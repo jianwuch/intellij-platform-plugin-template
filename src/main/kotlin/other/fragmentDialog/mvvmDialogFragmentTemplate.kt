@@ -3,6 +3,8 @@ package other.fragmentDialog
 import com.android.tools.idea.wizard.template.*
 import com.android.tools.idea.wizard.template.impl.activities.common.MIN_API
 import other.activity.mvvmActivityRecipe
+import other.mvvm.activity.cameToUnderlineCase
+import other.mvvm.activity.defaultPackageNameParameter
 import java.util.Locale
 
 
