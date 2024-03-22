@@ -3,21 +3,35 @@ package other.fragment.app_package
 
 fun mvvmFragmentKt(
     applicationPackage: String?,
-    activityClass: String,
+    fragmentName: String,
     layoutName: String,
     packageName: String
-) = """
+): String {
+
+    val fullClassName = "${fragmentName}Fragment"
+    val vmFullName = "${fragmentName}VM"
+    val bindingFullClassName = "Fragment${fragmentName}Binding"
+
+    return """
 package ${packageName}
 
 import android.os.Bundle
 import android.view.View
 import ${applicationPackage}.R
-import ${applicationPackage}.databinding.Fragment${activityClass}Binding
+import ${applicationPackage}.databinding.${bindingFullClassName}
 import com.duiud.bobo.framework.fragment.ViewModelFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ${activityClass}Fragment : ViewModelFragment<${activityClass}VM, Fragment${activityClass}Binding>() {
+class ${fullClassName} : ViewModelFragment<${vmFullName}, ${bindingFullClassName}>() {
+    companion object {
+        fun newInstance(): ${fullClassName} {
+            val args = Bundle()
+            val fragment = ${fullClassName}()
+            fragment.arguments = args
+            return fragment
+        }
+    }
     override fun getLayoutId() = R.layout.${layoutName}
     
     override fun onLazyLoad() {}
@@ -27,3 +41,4 @@ class ${activityClass}Fragment : ViewModelFragment<${activityClass}VM, Fragment$
     }
 }
 """
+}
