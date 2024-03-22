@@ -7,7 +7,6 @@ fun mvvmFragmentKt(
     layoutName: String,
     packageName: String
 ): String {
-
     val fullClassName = "${fragmentName}Fragment"
     val vmFullName = "${fragmentName}VM"
     val bindingFullClassName = "Fragment${fragmentName}Binding"
@@ -34,10 +33,13 @@ class ${fullClassName} : ViewModelFragment<${vmFullName}, ${bindingFullClassName
     }
     override fun getLayoutId() = R.layout.${layoutName}
     
-    override fun onLazyLoad() {}
+    override fun onLazyLoad() {
+    //TODO loadData--httpData/DBData
+    }
     
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //TODO init
     }
 }
 """
