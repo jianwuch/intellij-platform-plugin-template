@@ -28,7 +28,7 @@ val mvvmDialogFragmentTemplate
         lateinit var layoutName: StringParameter
 
         val activityClass = stringParameter {
-            name = "Dialog Name(不要包含Dialog)"
+            name = "Dialog Name(不要包含Dialog,会自动添加)"
             default = "Main"
             help = "只输入名字，不要包含Dialog"
             constraints = listOf(Constraint.NONEMPTY)
